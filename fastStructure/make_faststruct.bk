@@ -1,0 +1,18 @@
+# a make file to automate structure analysis in parallel
+
+REPS = 1
+MAX_K = 20
+TOTAL_REPS = $(shell echo $(REPS)\*$(MAX_K) | bc)
+LIMIT = 19
+
+all : estimateK.res
+
+estimateK.res : infile.str
+	parallel ./par_fastStruct.sh $(REPS) ::: {0..$(LIMIT)}
+	echo 'Simple results' > $@
+	python ~/Applications/fastStructure/chooseK.py --input=output_simple >> $@
+	echo 'Logistic results' >> $@
+	python ~/Applications/fastStructure/chooseK.py --input=output_logistic >> $@
+
+
+

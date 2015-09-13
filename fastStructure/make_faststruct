@@ -1,0 +1,26 @@
+# a make file to automate faststructure analysis in parallel
+
+REPS = 2
+MAX_K = 3
+TOTAL_REPS = $(shell echo $(REPS)\*$(MAX_K) | bc)
+LIMIT = $(shell echo $(TOTAL_REPS)-1 | bc)
+PATH_STRUCTURE_PY = ~/bin/fastStructure/structure.py
+PATH_CHOOSE_PY = ~/bin/fastStructure/chooseK.py
+PRIOR = simple
+DATA_FORMAT = bed
+PATH_INFILE = /Users/andersgs/bin/fastStructure/test/testdata
+
+all : estimateK.res
+
+estimateK.res : 
+	parallel ./par_fastStruct.sh $(PATH_STRUCTURE_PY) $(PATH_INFILE) $(PRIOR) $(DATA_FORMAT) $(REPS) ::: {0..$(LIMIT)}
+	echo 'Results' > $@
+	number=1 ; while [[ $$number -le $(REPS) ]] ; do \
+		echo '--' >> $@; \
+		echo 'Replicate ' $$number >> $@ ; \
+		python $(PATH_CHOOSE_PY) --input=output_$(PRIOR)_$$number >> $@ ;\
+		((number = number + 1)) ; \
+	done
+
+clean : estimateK.res
+	rm estimateK.res
