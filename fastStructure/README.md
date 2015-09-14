@@ -7,8 +7,8 @@ of `fastStructure` across a range of `K`.
 
 You must have installed:
 
-	GNU Parallel
-	fastStructure
+* [GNU Parallel](https://www.gnu.org/software/parallel/)
+* [fastStructure](https://github.com/rajanil/fastStructure)
 
 # Running the script
 
