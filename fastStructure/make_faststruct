@@ -22,5 +22,5 @@ estimateK.res :
 		((number = number + 1)) ; \
 	done
 
-clean : estimateK.res
-	rm estimateK.res
+clean:
+	rm estimateK.res output_$(PRIOR)*
