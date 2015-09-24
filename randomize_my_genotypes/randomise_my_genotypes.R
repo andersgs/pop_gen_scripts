@@ -20,6 +20,17 @@
 ###    are from dinucleotide repeat microsatellites
 ###############################################################################
 
+###############################################################################
+### HOW TO RUN:
+###    From within in R:
+###       Edit the variables below, select the whole script, and run
+###
+###    From the command line:
+###       Edit the variable below, and save the script
+###       Type the following in your shell:
+###           Rscript<.exe> randomise_my_genotypes.R
+###############################################################################
+
 
 ####
 # load libraries
@@ -28,6 +39,7 @@
 library(adegenet)
 library(stringi)
 library(data.table)
+
 
 ####
 # Variables you must set
