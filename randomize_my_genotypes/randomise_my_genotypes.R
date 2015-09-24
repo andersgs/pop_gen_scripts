@@ -29,10 +29,16 @@ n_ind <- nrow(dat@tab)
 randomised_order <- sapply(1:n_loc, function(i) sample(1:n_ind, replace = F))
 dat_loc_list <- seploc(x = dat)
 new_locs <- lapply(1:n_loc, function(i) {
-  tmp <- dat_loc_list[[i]]
-  tmp@tab[randomised_order[,i],]
+  i = 1
+  tmp <- dat_loc_list[[i]]@tab
+  n_all <- ncol(tmp)
+  n_entries <- length(tmp)
+  randomised_order <- sample(1:n_entries, replace = F)
+  new_tab <- sapply(1:n_all, function(i) tmp[randomised_order[,i],i])
+  colnames(new_tab) <- colnames(tmp)
+  new_tab
 })
 new_tab <- do.call(cbind, new_locs)
 row.names(new_tab) <- 1:n_ind
 new_dat <- genind(tab = new_tab, loc.fac = dat@loc.fac, loc.n.all = dat@loc.n.all, all.names = dat@all.names)
-genind2df(new_dat)[1,]
+genind2df(new_dat)
