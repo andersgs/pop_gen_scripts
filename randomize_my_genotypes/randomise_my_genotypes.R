@@ -52,10 +52,6 @@ out_prefix = NULL # a string with the prefix to use when writing the
                   # where the digit is replicate number
 seed = 889999 # if you want to reproduce what you did later
 
-infile = "~/Downloads/1K_Aber_Lach_CatDam_data.gen"
-reps = 5
-out_prefix = "randomize_my_genotypes/test/test"
-
 ###############################################################################
 #### DON'T EDIT PASS THIS POINT UNLESS YOU KNOW WHAT YOU ARE DOING! ###########
 ###############################################################################
