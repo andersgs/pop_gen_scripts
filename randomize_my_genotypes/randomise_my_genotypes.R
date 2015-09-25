@@ -44,7 +44,7 @@ library(data.table)
 ####
 # Variables you must set
 # after setting the variables, select the whole script and run
-infile = NULL # the path to your genpop file (e.g., /home/user/my.gen)
+infile = NULL # the path to your genpop file (e.g., "/home/user/my.gen")
 reps = NULL # an integer with how many random files you want to create (e.g., 100)
 out_prefix = NULL # a string with the prefix to use when writing the 
                   # new genpop files ready for oneSamp. E.g., "random"
@@ -52,6 +52,9 @@ out_prefix = NULL # a string with the prefix to use when writing the
                   # where the digit is replicate number
 seed = 889999 # if you want to reproduce what you did later
 
+infile = "~/Downloads/1K_Aber_Lach_CatDam_data.gen"
+reps = 5
+out_prefix = "randomize_my_genotypes/test/test"
 
 ###############################################################################
 #### DON'T EDIT PASS THIS POINT UNLESS YOU KNOW WHAT YOU ARE DOING! ###########
@@ -88,7 +91,7 @@ randomise_my_genotypes <- function(infile, reps, out_prefix, seed) {
     #generate the output
     outfn <- paste(out_prefix, "_", rep, ".gen", sep = "")
     title = paste("Random genotypes generated with randomise_my_genotypes.R:0.1 --- rep ", rep, "\n", sep = "")
-    locs = paste(1:n_loc, ", 2", "\n", sep = "")
+    locs = paste(1:n_loc, ", 2", "\n", sep = "", collapse = "")
     pop = "pop\n"
     cat(title, locs, pop, formated_genos, file = outfn)
   }
